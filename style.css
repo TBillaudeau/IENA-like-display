@@ -1,0 +1,52 @@
+/* change font */
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* remove default h2 styling */
+h2 {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.cocktail{
+    background-color: #181a3e;
+    padding: 20px;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+}
+
+img{
+    height: 50px;
+}
+
+.row {
+    display: flex;
+    column-gap: 10px;
+  }
+  
+.column {
+flex: 50%;
+}
+
+p{
+margin-left: 20px;
+margin-right: 20px;
+font-weight: bold;
+font-size: 25px;
+margin-top: auto;
+margin-bottom: auto;
+}
+
+h2{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+}
+
+.time{
+    margin-right: 0px;
+    margin-left: auto;
+}
