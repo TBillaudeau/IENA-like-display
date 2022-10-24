@@ -12,6 +12,20 @@ fetch("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop
   })
   .catch((error) => console.error("FETCH ERROR:", error));
 
+  fetch("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01729/stops/stop_area:IDFM:73688/realtime")
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+  })
+  .then(data => {
+    console.log(data);
+    displayRer(data)
+  })
+  .catch((error) => console.error("FETCH ERROR:", error));
+
 fetch("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime")
   .then((response) => {
     if (response.ok) {
@@ -73,6 +87,39 @@ function displayTrain(data) {
         
         document.querySelector('.container_train').appendChild(div);
     }
+}
+
+function displayRer(data) {
+  const nextDepartures = data['nextDepartures']['data'];
+  // loop in nextDepartures
+  for (let i = 0; i < 5; i++) {
+      // get shortName
+      const shortName = nextDepartures[i]['shortName'];
+      const vehicleName = nextDepartures[i]['vehicleName'];
+      const lineDirection = nextDepartures[i]['lineDirection'];
+      if (nextDepartures[i]['code'] === 'duration') {
+          var time = nextDepartures[i]['time'] + ' min';
+      } else {
+          var time = nextDepartures[i]['schedule'];
+      }
+
+      // if shortName is 'L' display this image https://malignel.transilien.com/wp-content/themes/transilien2021-L/img/ligne.svg
+      if (shortName === 'E') {
+          var ico = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Paris_transit_icons_-_RER_E.svg/768px-Paris_transit_icons_-_RER_E.svg.png';
+      }
+
+      const div = document.createElement('div');
+      div.innerHTML = `
+          <div class="cocktail">
+              <img src="${ico}" alt="${shortName}" />
+              <h2>${vehicleName}</h2>
+              <p>${lineDirection}</p>
+              <p class="time">${time}</p>
+          </div>
+      `;
+      
+      document.querySelector('.container_rer').appendChild(div);
+  }
 } 
 
 function displayTram(data) {
