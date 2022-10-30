@@ -124,6 +124,9 @@ async function main(){
   // U - Suresnes Mont Valérien
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:70829/realtime", 'area5');
 
+    // RER D - Gare du Nord
+    getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:71410/realtime", 'area14');
+
   // RER D - Stade de France
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:72206/realtime", 'area6');
   
