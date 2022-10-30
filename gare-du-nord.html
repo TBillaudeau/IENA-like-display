@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My First Web Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <span id='horloge'></span>
+    <div class="row">
+        <div class="column">
+            <div class="container area8"></div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$.get("/navbar.html", function(data){
+    $("#navbar").replaceWith(data);
+});
+</script>
+</html>

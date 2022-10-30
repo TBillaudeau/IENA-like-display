@@ -9,6 +9,15 @@ h2 {
     font-weight: normal;
 }
 
+#horloge{
+  color: darkgoldenrod;
+  font-size: 40px;
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: monospace;
+}
+
 .cocktail{
     background-color: #181a3e;
     padding: 20px;
@@ -16,6 +25,10 @@ h2 {
     margin-bottom: 10px;
     border-radius: 10px;
     display: flex;
+}
+
+.container{
+  padding: 20px;
 }
 
 img{
@@ -43,10 +56,38 @@ margin-bottom: auto;
 h2{
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 20px;
+    position: relative;
+    left: 10px;
 }
 
 .time{
     margin-right: 0px;
     margin-left: auto;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }

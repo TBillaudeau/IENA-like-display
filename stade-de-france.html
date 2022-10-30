@@ -10,13 +10,11 @@
     <span id='horloge'></span>
     <div class="row">
         <div class="column">
-            <div class="container area1"></div>
+            <div class="container area6"></div>
         </div>
         <div class="column">
             <div>
-                <div class="container area2"></div>
-                <div class="container area5"></div>
-                <div class="container area10"></div>
+                <div class="container area7"></div>
             </div>
         </div>
       </div>
@@ -24,12 +22,8 @@
 <script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-    $.get("/navbar.html", function(data){
-        $("#navbar").replaceWith(data);
-    });
-
-
-
-
-    </script>
+$.get("/navbar.html", function(data){
+    $("#navbar").replaceWith(data);
+});
+</script>
 </html>
