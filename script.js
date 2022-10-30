@@ -143,7 +143,7 @@ async function main(){
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01193/stops/stop_area:IDFM:415734/realtime", 'area13');
 
 
-  // setTimeout('main()', 1000)
+  setTimeout('main()', 1000)
 }
 
 main();
