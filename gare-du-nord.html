@@ -6,7 +6,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="navbar"></div>
+    <ul>
+        <li><a href="index.html">Suresnes</a></li>
+        <li><a href="saint-lazare.html">Gare Saint Lazare</a></li>
+        <li><a href="gare-du-nord.html">Gare du Nord</a></li>
+        <li><a href="clichy-levallois.html">Clichy</a></li>
+        <li><a href="stade-de-france.html">Stade de France</a></li>
+    </ul>
     <span id='horloge'></span>
     <div class="row">
         <div class="column">
@@ -15,10 +21,4 @@
     </div>
 </body>
 <script src="script.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-$.get("/navbar.html", function(data){
-    $("#navbar").replaceWith(data);
-});
-</script>
 </html>
