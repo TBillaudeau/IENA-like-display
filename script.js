@@ -12,8 +12,14 @@ async function getICO(shortName) {
       return 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Paris_transit_icons_-_RER_B.svg/2048px-Paris_transit_icons_-_RER_B.svg.png';
     case 'T2':
       return 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Paris_transit_icons_-_Tram_2.svg/768px-Paris_transit_icons_-_Tram_2.svg.png';
+    case '7':
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Paris_transit_icons_-_M%C3%A9tro_7.svg/800px-Paris_transit_icons_-_M%C3%A9tro_7.svg.png';
     case '175':
       return 'https://upload.wikimedia.org/wikipedia/commons/a/ae/175_BUS_RATP.png';
+    case '172':
+      return 'https://www.ratp.fr/sites/default/files/lines-assets/picto/busratp/picto_busratp_ligne-172.1496915836.svg';
+    case '180':
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Logo_Ligne_Bus_RATP_180.svg/2560px-Logo_Ligne_Bus_RATP_180.svg.png';
   }
 }
 
@@ -21,26 +27,37 @@ async function displayData(data, area){
   const nextDepartures = data['nextDepartures']['data'];
 
   // remove all children
-  if (document.querySelector(`.${area}`).children[0] !== 'undefined'){
+  try {
+    if (document.querySelector(`.${area}`).children[0] !== undefined){
       while(document.querySelector(`.${area}`).children.length > 0) {
         document.querySelector(`.${area}`).children[0].remove();
+      }
     }
-  }
-
-
+  } catch (error) {}
+  
   // loop in nextDepartures
   for (let i = 0; i < nextDepartures.length; i++) {
+    // if (i > 20) {
+    //   break;
+    // }
     
     // get all info
     const shortName = nextDepartures[i]['shortName'];
     const vehicleName = (nextDepartures[i]['vehicleName']) ? nextDepartures[i]['vehicleName'] : ' ' ;
-    const lineDirection = nextDepartures[i]['lineDirection'];
+    var lineDirection = nextDepartures[i]['lineDirection'];
     if (nextDepartures[i]['code'] === 'duration') {
-        var time = nextDepartures[i]['time'] + ' min';
+        var time = nextDepartures[i]['time'];
     } else {
         var time = nextDepartures[i]['schedule'];
     }
     const ico = await getICO(shortName);
+
+    // fix missing values in the response
+    if (vehicleName === 'DEFI' && lineDirection === undefined){
+      lineDirection = 'La Défense';
+    } else if (vehicleName === 'SILS' && lineDirection === undefined){
+      lineDirection = 'Saint-Nom-la-Brétèche';
+    }
 
     // create panel
     var div = document.createElement('div');
@@ -52,15 +69,9 @@ async function displayData(data, area){
             <p class="time">${time}</p>
         </div>
     `;
-
-    document.querySelector(`.${area}`).appendChild(div);
-
-    // check if panel already exist
-    // if (document.querySelector(`.${area}`).children[0] === undefined) {
-    //     document.querySelector(`.${area}`).appendChild(div);
-    // } else {    
-    //   document.querySelector(`.${area}`).replaceChild(div, document.querySelector(`.${area}`).children[0].childNodes[0]);
-    // }
+    try {
+      document.querySelector(`.${area}`).appendChild(div);
+    } catch (error) {}
   }
 }
 
@@ -95,7 +106,7 @@ async function main(){
   // RER E - Gare Saint Lazare
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01729/stops/stop_area:IDFM:73688/realtime", 'area3');
 
-  // // RER E - Magenta
+  // RER E - Magenta
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01729/stops/stop_area:IDFM:478733/realtime", 'area8');
 
   // T2 - Station Belvédère
@@ -104,14 +115,14 @@ async function main(){
   // L - Gare Saint Lazare
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop_area:IDFM:71370/realtime", 'area4');
 
-  // // L - Suresnes Mont Valérien
+  // L - Suresnes Mont Valérien
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop_area:IDFM:70829/realtime", 'area1');
 
-  // // L - Clichy Levallois
+  // L - Clichy Levallois
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop_area:IDFM:72073/realtime", 'area9');
 
-  // // U - Suresnes Mont Valérien
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime", 'area5');
+  // U - Suresnes Mont Valérien
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:70829/realtime", 'area5');
 
   // RER D - Stade de France
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:72206/realtime", 'area6');
@@ -121,6 +132,15 @@ async function main(){
 
   // 175 - Nieuport
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01196/stops/stop_area:IDFM:70822/realtime", 'area10');
+
+  // M7 - Villejuif Louis Aragon
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01377/stops/stop_area:IDFM:70143/realtime", 'area11');
+
+  // 180 - Villejuif Louis Aragon
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01201/stops/stop_area:IDFM:70143/realtime", 'area12');
+
+  // 172 - Villejuif Louis Aragon
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01193/stops/stop_area:IDFM:415734/realtime", 'area13');
 
 
   setTimeout('main()', 1000)
