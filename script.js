@@ -46,9 +46,18 @@ async function displayData(data, area){
     const vehicleName = (nextDepartures[i]['vehicleName']) ? nextDepartures[i]['vehicleName'] : ' ' ;
     var lineDirection = nextDepartures[i]['lineDirection'];
     if (nextDepartures[i]['code'] === 'duration') {
-        var time = nextDepartures[i]['time'];
+      // convert duration to hours and minutes if > 60 minutes
+      if (nextDepartures[i]['time'] > 60) {
+        var hours = Math.floor(nextDepartures[i]['time'] / 60);
+        var minutes = nextDepartures[i]['time'] % 60;
+        if (hours < 10) { hours = '0' + hours; }
+        if (minutes < 10) { minutes = '0' + minutes; }
+        var time = `${hours}h${minutes}`;
+      } else { 
+        var time = nextDepartures[i]['time'] + 'ᵐⁱⁿ';
+      }
     } else {
-        var time = nextDepartures[i]['schedule'];
+      var time = nextDepartures[i]['schedule'];
     }
     const ico = await getICO(shortName);
 
@@ -56,6 +65,8 @@ async function displayData(data, area){
     if (vehicleName === 'DEFI' && lineDirection === undefined){
       lineDirection = 'La Défense';
     } else if (vehicleName === 'SILS' && lineDirection === undefined){
+      lineDirection = 'Saint-Nom-la-Brétèche';
+    } else if (vehicleName === 'SOPA' && lineDirection === undefined){
       lineDirection = 'Saint-Nom-la-Brétèche';
     }
 
@@ -67,6 +78,21 @@ async function displayData(data, area){
             <h2>${vehicleName}</h2>
             <p>${lineDirection}</p>
             <p class="time">${time}</p>
+        </div>
+    `;
+
+    // add panel to the DOM
+    try {
+      document.querySelector(`.${area}`).appendChild(div);
+    } catch (error) {}
+  }
+
+  // Display no data if no data
+  if (nextDepartures.length === 0) {
+    var div = document.createElement('div');
+    div.innerHTML = `
+        <div class="cocktail">
+            <h2>NO DATA</h2>
         </div>
     `;
     try {
@@ -124,8 +150,8 @@ async function main(){
   // U - Suresnes Mont Valérien
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:70829/realtime", 'area5');
 
-    // RER D - Gare du Nord
-    getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:71410/realtime", 'area14');
+  // RER D - Gare du Nord
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:71410/realtime", 'area14');
 
   // RER D - Stade de France
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:72206/realtime", 'area6');
@@ -145,6 +171,8 @@ async function main(){
   // 172 - Villejuif Louis Aragon
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01193/stops/stop_area:IDFM:415734/realtime", 'area13');
 
+  // T7 - Villejuif Louis Aragon
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area15');
 
   setTimeout('main()', 1000)
 }
