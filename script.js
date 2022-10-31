@@ -178,7 +178,7 @@ async function main(){
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area15');
 
   // Metro 7 - Chatelet
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area20');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01377/stops/stop_area:IDFM:71264/realtime", 'area20');
 
   // RER D - Chatelet
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:474151/realtime", 'area19');
@@ -189,7 +189,7 @@ async function main(){
   // RER A - La defense
   // getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area20');
 
-  // setTimeout('main()', 3000)
+  setTimeout('main()', 3000)
 }
 
 main();
