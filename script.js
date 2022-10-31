@@ -31,7 +31,7 @@ async function computeTime(nextDepartures){
       var hours = Math.floor(nextDepartures['time'] / 60);
       var minutes = nextDepartures['time'] % 60;
       if (hours < 10) { hours = '0' + hours; }
-      if (minutes < 10) { minutes = '0' + minutes; }
+      if (minutes < 10) { minutes = '0' + minutes ; }
       var time = `${hours}h${minutes}`;
     } else { 
       var time = nextDepartures['time'] + 'ᵐⁱⁿ';
@@ -39,7 +39,7 @@ async function computeTime(nextDepartures){
   } else {
     var time = nextDepartures['schedule'];
   }
-  return time;
+  return '🗦 ' + time;
 }
 
 async function displayData(data, area){
@@ -189,7 +189,7 @@ async function main(){
   // RER A - La defense
   // getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area20');
 
-  setTimeout('main()', 3000)
+  // setTimeout('main()', 3000)
 }
 
 main();

@@ -115,3 +115,7 @@ ul {
   .active {
     background-color: #111;
   }
+
+  .time{
+    color: rgb(0, 150, 0);
+  }
