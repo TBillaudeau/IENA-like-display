@@ -5,15 +5,17 @@ async function getICO(shortName) {
     case 'U':
       return 'https://meslignesnetu.transilien.com/wp-content/uploads/2021/05/Ligne_U_IDFM.png';
     case 'E':
-      return  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Paris_transit_icons_-_RER_E.svg/768px-Paris_transit_icons_-_RER_E.svg.png';
+      return  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Paris_transit_icons_-_RER_E.svg/2048px-Paris_transit_icons_-_RER_E.svg.png';
     case 'D':
-      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Paris_transit_icons_-_RER_D.svg/1024px-Paris_transit_icons_-_RER_D.svg.png';
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Paris_transit_icons_-_RER_D.svg/2048px-Paris_transit_icons_-_RER_D.svg.png';
     case 'B':
       return 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Paris_transit_icons_-_RER_B.svg/2048px-Paris_transit_icons_-_RER_B.svg.png';
+    case 'A':
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Paris_transit_icons_-_RER_A.svg/2048px-Paris_transit_icons_-_RER_A.svg.png';
     case 'T2':
-      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Paris_transit_icons_-_Tram_2.svg/768px-Paris_transit_icons_-_Tram_2.svg.png';
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Paris_transit_icons_-_Tram_2.svg/2048px-Paris_transit_icons_-_Tram_2.svg.png';
     case '7':
-      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Paris_transit_icons_-_M%C3%A9tro_7.svg/800px-Paris_transit_icons_-_M%C3%A9tro_7.svg.png';
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Paris_transit_icons_-_M%C3%A9tro_7.svg/2048px-Paris_transit_icons_-_M%C3%A9tro_7.svg.png';
     case '175':
       return 'https://upload.wikimedia.org/wikipedia/commons/a/ae/175_BUS_RATP.png';
     case '172':
@@ -21,6 +23,23 @@ async function getICO(shortName) {
     case '180':
       return 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Logo_Ligne_Bus_RATP_180.svg/2560px-Logo_Ligne_Bus_RATP_180.svg.png';
   }
+}
+
+async function computeTime(nextDepartures){
+  if (nextDepartures['code'] === 'duration') {
+    if (nextDepartures['time'] > 60) {
+      var hours = Math.floor(nextDepartures['time'] / 60);
+      var minutes = nextDepartures['time'] % 60;
+      if (hours < 10) { hours = '0' + hours; }
+      if (minutes < 10) { minutes = '0' + minutes; }
+      var time = `${hours}h${minutes}`;
+    } else { 
+      var time = nextDepartures['time'] + 'ᵐⁱⁿ';
+    }
+  } else {
+    var time = nextDepartures['schedule'];
+  }
+  return time;
 }
 
 async function displayData(data, area){
@@ -37,28 +56,12 @@ async function displayData(data, area){
   
   // loop in nextDepartures
   for (let i = 0; i < nextDepartures.length; i++) {
-    // if (i > 20) {
-    //   break;
-    // }
-    
+
     // get all info
     const shortName = nextDepartures[i]['shortName'];
     const vehicleName = (nextDepartures[i]['vehicleName']) ? nextDepartures[i]['vehicleName'] : ' ' ;
     var lineDirection = nextDepartures[i]['lineDirection'];
-    if (nextDepartures[i]['code'] === 'duration') {
-      // convert duration to hours and minutes if > 60 minutes
-      if (nextDepartures[i]['time'] > 60) {
-        var hours = Math.floor(nextDepartures[i]['time'] / 60);
-        var minutes = nextDepartures[i]['time'] % 60;
-        if (hours < 10) { hours = '0' + hours; }
-        if (minutes < 10) { minutes = '0' + minutes; }
-        var time = `${hours}h${minutes}`;
-      } else { 
-        var time = nextDepartures[i]['time'] + 'ᵐⁱⁿ';
-      }
-    } else {
-      var time = nextDepartures[i]['schedule'];
-    }
+    const time = await computeTime(nextDepartures[i]);
     const ico = await getICO(shortName);
 
     // fix missing values in the response
@@ -174,7 +177,19 @@ async function main(){
   // T7 - Villejuif Louis Aragon
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area15');
 
-  setTimeout('main()', 1000)
+  // Metro 7 - Chatelet
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area20');
+
+  // RER D - Chatelet
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:474151/realtime", 'area19');
+
+  // RER A - Chatelet
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:474151/realtime", 'area18');
+
+  // RER A - La defense
+  // getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area20');
+
+  setTimeout('main()', 3000)
 }
 
 main();
