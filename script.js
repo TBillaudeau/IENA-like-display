@@ -39,7 +39,7 @@ async function computeTime(nextDepartures){
   } else {
     var time = nextDepartures['schedule'];
   }
-  return '🗦 ' + time;
+  return time;
 }
 
 async function displayData(data, area){
@@ -70,6 +70,8 @@ async function displayData(data, area){
     } else if (vehicleName === 'SILS' && lineDirection === undefined){
       lineDirection = 'Saint-Nom-la-Brétèche';
     } else if (vehicleName === 'SOPA' && lineDirection === undefined){
+      lineDirection = 'Saint-Nom-la-Brétèche';
+    } else if (vehicleName === 'SEBU' && lineDirection === undefined){
       lineDirection = 'Saint-Nom-la-Brétèche';
     }
 
