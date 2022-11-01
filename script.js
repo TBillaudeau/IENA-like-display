@@ -73,6 +73,12 @@ async function displayData(data, area){
       lineDirection = 'Saint-Nom-la-Brétèche';
     } else if (vehicleName === 'SEBU' && lineDirection === undefined){
       lineDirection = 'Saint-Nom-la-Brétèche';
+    } else if (vehicleName === 'SOLU' && lineDirection === undefined){
+      lineDirection = 'Saint-Nom-la-Brétèche';
+    } else if (vehicleName === 'LOVU' && lineDirection === undefined){
+      lineDirection = 'La Défense';
+    } else if (vehicleName === 'LOSA' && lineDirection === undefined){
+      lineDirection = 'La Défense';
     }
 
     // create panel
@@ -189,7 +195,16 @@ async function main(){
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:474151/realtime", 'area18');
 
   // RER A - La defense
-  // getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area20');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area16');
+  
+  // T2 - La defense
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01390/stops/stop_area:IDFM:71517/realtime", 'area17');
+
+  // Ligne U - La defense
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime", 'area21');
+
+  // RER D - Fosses
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:69450/realtime", 'area21');
 
   setTimeout('main()', 3000)
 }
