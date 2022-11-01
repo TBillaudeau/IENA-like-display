@@ -25,6 +25,25 @@ async function getICO(shortName) {
   }
 }
 
+async function fixlineDirection(vehicleName, lineDirection){
+  if (vehicleName === 'DEFI' && lineDirection === undefined){
+    lineDirection = 'La Défense';
+  } else if (vehicleName === 'SILS' && lineDirection === undefined){
+    lineDirection = 'Saint-Nom-la-Brétèche';
+  } else if (vehicleName === 'SOPA' && lineDirection === undefined){
+    lineDirection = 'Saint-Nom-la-Brétèche';
+  } else if (vehicleName === 'SEBU' && lineDirection === undefined){
+    lineDirection = 'Saint-Nom-la-Brétèche';
+  } else if (vehicleName === 'SOLU' && lineDirection === undefined){
+    lineDirection = 'Saint-Nom-la-Brétèche';
+  } else if (vehicleName === 'LOVU' && lineDirection === undefined){
+    lineDirection = 'La Défense';
+  } else if (vehicleName === 'LOSA' && lineDirection === undefined){
+    lineDirection = 'La Défense';
+  }
+  return lineDirection;
+}
+
 async function computeTime(nextDepartures){
   if (nextDepartures['code'] === 'duration') {
     if (nextDepartures['time'] > 60) {
@@ -56,30 +75,16 @@ async function displayData(data, area){
   
   // loop in nextDepartures
   for (let i = 0; i < nextDepartures.length; i++) {
+    // break if more than 12 departures
+    if (i > 12) { break; }
 
     // get all info
     const shortName = nextDepartures[i]['shortName'];
     const vehicleName = (nextDepartures[i]['vehicleName']) ? nextDepartures[i]['vehicleName'] : ' ' ;
     var lineDirection = nextDepartures[i]['lineDirection'];
+    lineDirection = await fixlineDirection(vehicleName, lineDirection);
     const time = await computeTime(nextDepartures[i]);
-    const ico = await getICO(shortName);
-
-    // fix missing values in the response
-    if (vehicleName === 'DEFI' && lineDirection === undefined){
-      lineDirection = 'La Défense';
-    } else if (vehicleName === 'SILS' && lineDirection === undefined){
-      lineDirection = 'Saint-Nom-la-Brétèche';
-    } else if (vehicleName === 'SOPA' && lineDirection === undefined){
-      lineDirection = 'Saint-Nom-la-Brétèche';
-    } else if (vehicleName === 'SEBU' && lineDirection === undefined){
-      lineDirection = 'Saint-Nom-la-Brétèche';
-    } else if (vehicleName === 'SOLU' && lineDirection === undefined){
-      lineDirection = 'Saint-Nom-la-Brétèche';
-    } else if (vehicleName === 'LOVU' && lineDirection === undefined){
-      lineDirection = 'La Défense';
-    } else if (vehicleName === 'LOSA' && lineDirection === undefined){
-      lineDirection = 'La Défense';
-    }
+    const ico = await getICO(shortName);   
 
     // create panel
     var div = document.createElement('div');
@@ -124,20 +129,19 @@ async function getData(url, area) {
   })
 }
 
-function showDate() {
-  var time = null;
-  var date = new Date()
-  var h = date.getHours();
-  var m = date.getMinutes();
-  var s = date.getSeconds();
-  if( h < 10 ){ h = '0' + h; }
-  if( m < 10 ){ m = '0' + m; }
-  if( s < 10 ){ s = '0' + s; }
-  var time = h + ':' + m + ':' + s
-  document.getElementById('horloge').innerHTML = time;
-  setTimeout('showDate()', 1000)
-}
-showDate();
+// function showDate() {
+//   var time = null;
+//   var date = new Date()
+//   var h = date.getHours();
+//   var m = date.getMinutes();
+//   var s = date.getSeconds();
+//   if( h < 10 ){ h = '0' + h; }
+//   if( m < 10 ){ m = '0' + m; }
+//   if( s < 10 ){ s = '0' + s; }
+//   var time = h + ':' + m + ':' + s
+//   document.getElementById('horloge').innerHTML = time;
+//   setTimeout('showDate()', 1000)
+// }
 
 async function main(){
   // RER E - Gare Saint Lazare
@@ -201,7 +205,7 @@ async function main(){
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01390/stops/stop_area:IDFM:71517/realtime", 'area17');
 
   // Ligne U - La defense
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime", 'area21');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime", 'area22');
 
   // RER D - Fosses
   getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:69450/realtime", 'area21');
