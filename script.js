@@ -45,7 +45,7 @@ async function fixlineDirection(vehicleName, lineDirection){
 }
 
 async function computeTime(nextDepartures){
-  if (nextDepartures['code'] === 'duration') {
+  if (nextDepartures['code'] === 'duration' || Number.isInteger(nextDepartures['time'])) {
     if (nextDepartures['time'] > 60) {
       var hours = Math.floor(nextDepartures['time'] / 60);
       var minutes = nextDepartures['time'] % 60;
