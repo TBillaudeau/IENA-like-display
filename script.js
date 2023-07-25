@@ -145,70 +145,70 @@ async function getData(url, area) {
 
 async function main(){
   // RER E - Gare Saint Lazare
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01729/stops/stop_area:IDFM:73688/realtime", 'area3');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01729/stops/stop_area:IDFM:73688/realtime", 'area3');
 
   // RER E - Magenta
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01729/stops/stop_area:IDFM:478733/realtime", 'area8');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01729/stops/stop_area:IDFM:478733/realtime", 'area8');
 
   // T2 - Station Belvédère
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01390/stops/stop_area:IDFM:70845/realtime", 'area2');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01390/stops/stop_area:IDFM:70845/realtime", 'area2');
 
   // L - Gare Saint Lazare
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop_area:IDFM:71370/realtime", 'area4');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01740/stops/stop_area:IDFM:71370/realtime", 'area4');
 
   // L - Suresnes Mont Valérien
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop_area:IDFM:70829/realtime", 'area1');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01740/stops/stop_area:IDFM:70829/realtime", 'area1');
 
   // L - Clichy Levallois
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01740/stops/stop_area:IDFM:72073/realtime", 'area9');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01740/stops/stop_area:IDFM:72073/realtime", 'area9');
 
   // U - Suresnes Mont Valérien
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:70829/realtime", 'area5');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01741/stops/stop_area:IDFM:70829/realtime", 'area5');
 
   // RER D - Gare du Nord
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:71410/realtime", 'area14');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01728/stops/stop_area:IDFM:71410/realtime", 'area14');
 
   // RER D - Stade de France
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:72206/realtime", 'area6');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01728/stops/stop_area:IDFM:72206/realtime", 'area6');
   
   // RER B - Stade de France
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01743/stops/stop_area:IDFM:72211/realtime", 'area7');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01743/stops/stop_area:IDFM:72211/realtime", 'area7');
 
   // 175 - Nieuport
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01196/stops/stop_area:IDFM:70822/realtime", 'area10');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01196/stops/stop_area:IDFM:70822/realtime", 'area10');
 
   // M7 - Villejuif Louis Aragon
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01377/stops/stop_area:IDFM:70143/realtime", 'area11');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01377/stops/stop_area:IDFM:70143/realtime", 'area11');
 
   // 180 - Villejuif Louis Aragon
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01201/stops/stop_area:IDFM:70143/realtime", 'area12');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01201/stops/stop_area:IDFM:70143/realtime", 'area12');
 
   // 172 - Villejuif Louis Aragon
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01193/stops/stop_area:IDFM:415734/realtime", 'area13');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01193/stops/stop_area:IDFM:415734/realtime", 'area13');
 
   // T7 - Villejuif Louis Aragon
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area15');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01774/stops/stop_area:IDFM:70143/realtime", 'area15');
 
   // Metro 7 - Chatelet
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01377/stops/stop_area:IDFM:71264/realtime", 'area20');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01377/stops/stop_area:IDFM:71264/realtime", 'area20');
 
   // RER D - Chatelet
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:474151/realtime", 'area19');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01728/stops/stop_area:IDFM:474151/realtime", 'area19');
 
   // RER A - Chatelet
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:474151/realtime", 'area18');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01742/stops/stop_area:IDFM:474151/realtime", 'area18');
 
   // RER A - La defense
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area16');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01742/stops/stop_area:IDFM:71517/realtime", 'area16');
   
   // T2 - La defense
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01390/stops/stop_area:IDFM:71517/realtime", 'area17');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01390/stops/stop_area:IDFM:71517/realtime", 'area17');
 
   // Ligne U - La defense
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime", 'area22');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01741/stops/stop_area:IDFM:71517/realtime", 'area22');
 
   // RER D - Fosses
-  getData("https://api-iv.iledefrance-mobilites.fr/lines/line:IDFM:C01728/stops/stop_area:IDFM:69450/realtime", 'area21');
+  getData("https://api-iv.iledefrance-mobilites.fr/lines/v2/line:IDFM:C01728/stops/stop_area:IDFM:69450/realtime", 'area21');
 
   setTimeout('main()', 3000)
 }
